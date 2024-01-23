@@ -30,13 +30,24 @@ class BankAccountFactory extends Factory
 
     public function user(User|int|null $user = null): self
     {
-        return $this->state(function () use ($user){
+        return $this->state(function () use ($user) {
             $user = $user ?? User::factory()->create();
 
             $user = $user instanceof User ? $user->getAttribute('id') : $user;
 
             return [
                 'user_id' => $user,
+            ];
+        });
+    }
+
+    public function balance(string|int|null $balance = null): self
+    {
+        return $this->state(function () use ($balance) {
+            $balance ??= random_int(100000, 10000000);
+
+            return [
+                'balance' => $balance
             ];
         });
     }

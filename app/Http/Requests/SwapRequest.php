@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transaction;
 use App\Packages\Response\ResponseFormatter;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -14,7 +15,7 @@ class SwapRequest extends FormRequest
         return [
             'source' => ['required', 'exists:card_numbers,card_number', 'different:destination', 'ir_bank_card_number'],
             'destination' => ['required', 'exists:card_numbers,card_number', 'different:source', 'ir_bank_card_number'],
-            'balance' => ['required', 'gte:1000', 'lte:50000000'],
+            'balance' => ['required', 'gte:' . Transaction::MINIMUM_SWAP, 'lte:' . Transaction::MAXIMUM_SWAP],
         ];
     }
 

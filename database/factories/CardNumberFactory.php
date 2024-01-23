@@ -33,4 +33,15 @@ class CardNumberFactory extends Factory
             ];
         });
     }
+
+    public function cardNumber(?string $cardNumber = null): self
+    {
+        return $this->state(function () use ($cardNumber) {
+            $cardNumber ??= fake()->numerify('################');
+
+            return [
+                'card_number' => $cardNumber,
+            ];
+        });
+    }
 }
