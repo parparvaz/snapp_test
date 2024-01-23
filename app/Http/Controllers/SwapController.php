@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SwapRequest;
 use App\Services\SwapService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 
 class SwapController extends Controller
@@ -15,6 +16,9 @@ class SwapController extends Controller
     {
     }
 
+    /**
+     * @throws Exception
+     */
     public function swap(SwapRequest $request): JsonResponse
     {
         $response = $this->service->swap(params: $request->safe()->toArray());

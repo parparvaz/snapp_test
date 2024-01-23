@@ -2,9 +2,6 @@
 
 namespace App\Packages\SMS;
 
-use App\Packages\Constant\Constant;
-use App\Packages\Logger\ILogger;
-use App\Packages\Logger\LaravelLogger;
 use Exception;
 
 class SMS

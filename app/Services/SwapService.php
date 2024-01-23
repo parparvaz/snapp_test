@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\BankAccount;
 use App\Models\CardNumber;
 use App\Models\Transaction;
 use App\Notifications\SwapNotification;
@@ -18,8 +17,8 @@ class SwapService
     public function swap(array $params): array
     {
         [$source, $destination] = [
-            CardNumber::where('card_number', $params['source'])->with('bankAccount','bankAccount.user')->first(),
-            CardNumber::where('card_number', $params['destination'])->with('bankAccount','bankAccount.user')->first(),
+            CardNumber::where('card_number', $params['source'])->with('bankAccount.user')->first(),
+            CardNumber::where('card_number', $params['destination'])->with('bankAccount.user')->first(),
         ];
 
         if ($source->bankAccount->getAttribute('balance') < $params['balance'] + 500) {

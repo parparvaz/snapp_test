@@ -12,8 +12,8 @@ class SwapRequest extends FormRequest
     public function rules()
     {
         return [
-            'source' => ['required', 'exists:card_numbers,card_number', 'different:destination', /*'ir_bank_card_number'*/],
-            'destination' => ['required', 'exists:card_numbers,card_number', 'different:source', /*'ir_bank_card_number'*/],
+            'source' => ['required', 'exists:card_numbers,card_number', 'different:destination', 'ir_bank_card_number'],
+            'destination' => ['required', 'exists:card_numbers,card_number', 'different:source', 'ir_bank_card_number'],
             'balance' => ['required', 'gte:1000', 'lte:50000000'],
         ];
     }
