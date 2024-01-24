@@ -10,7 +10,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class SwapRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'source' => ['required', 'exists:card_numbers,card_number', 'different:destination', 'ir_bank_card_number'],
